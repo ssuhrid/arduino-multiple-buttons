@@ -10,7 +10,7 @@ class EmButtons{
 
     public :
 
-        EmButtons(byte NUMBUTTONS,byte* buttonPin);
+        EmButtons(byte NUMBUTTONS,byte buttonPin[]);
         byte switchPressed();
         void checkSwitches();
   

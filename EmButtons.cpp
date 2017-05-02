@@ -4,7 +4,7 @@
 
 /*****************************************************************/
 
-EmButtons::EmButtons(byte NUMBUTTONS,byte* buttonPin){
+EmButtons::EmButtons(byte NUMBUTTONS,byte buttonPin[]){
   _NUMBUTTONS=NUMBUTTONS;
   _buttonPin = new byte[_NUMBUTTONS];
   _pressed= new byte[_NUMBUTTONS];
