@@ -4,20 +4,32 @@
 
 /*****************************************************************/
 
-EmButtons::EmButtons(uint8_t NUMBUTTONS;uint8_t buttonPin[],char type){
-  for (int i=0;i<NUMBUTTONS;i++){
-    _buttonPin[i]=buttonPin[i];
-  }
-  _type=type;
+EmButtons::EmButtons(uint8_t NUMBUTTONS,uint8_t* buttonPin,unsigned char type){
+    _type=type;
   _NUMBUTTONS=NUMBUTTONS;
+  //Serial.begin(9600);
+  Serial.println("SEX");
+  _buttonPin = new uint8_t[_NUMBUTTONS];
+  for (int i=0;i<_NUMBUTTONS;i++){
+    _buttonPin[i]=buttonPin+i;
+  }
+  for (int i=0;i<_NUMBUTTONS;i++){
+    Serial.println(_buttonPin[i]);
+  }
   buttonInit();
+  _print = false;
+  _pressed= new byte[_NUMBUTTONS];
+   _justpressed=new byte[NUMBUTTONS];
+  _justreleased= new byte[_NUMBUTTONS];
+  _previous_keystate = new byte[_NUMBUTTONS];
+  _current_keystate = new byte[_NUMBUTTONS];
 }
 void EmButtons::buttonInit(){
  for (int i=0;i<_NUMBUTTONS;i++){
   pinMode(_buttonPin[i],INPUT);
  }
 }
-/*void EmButtons::checkSwitches(){
+void EmButtons::checkSwitches(){
   static byte _previousstate[NUMBUTTONS];
   static byte _currentstate[NUMBUTTONS];
   static long _lasttime;
@@ -65,31 +77,16 @@ byte EmButtons::switchJustPressed() {
 
 //=============================================================//
 
-void EmSevenSegment::setSerialPrint(boolean p){
+void EmButtons::setSerialPrint(boolean p){
   _print=p;
 }
 
 /*****************************************************************/
 
 
-void EmSevenSegment::serialPrint(String s){
+void EmButtons::serialPrint(String s){
   if (_print==true)
     Serial.println(s);
 }
-
-/*****************************************************************/
-
-/*void EmButtons::test(){
-  int arr[_digits];
-  for(int i=0;i<10;i++){
-    for(int j=0;j<_digits;j++){
-      arr[j]=i;
-    }
-    writeArray(arr);
-    delay(100);
-  }
-}*/
-
-/*****************************************************************/
 
 /*****************************************************************/
