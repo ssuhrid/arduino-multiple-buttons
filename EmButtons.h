@@ -10,24 +10,26 @@ class EmButtons{
 
     public :
 
-        EmButtons(uint8_t NUMBUTTONS,uint8_t* buttonPin,unsigned char type);
-        void setSerialPrint(boolean p);
+        EmButtons(byte NUMBUTTONS,byte* buttonPin,byte type);
         byte switchJustPressed();
         void checkSwitches();
   
     private:
 
-        void serialPrint(String s);        
         void buttonInit();
 
         char _type;
-        boolean _print;
-        uint8_t _NUMBUTTONS;
-        uint8_t* _buttonPin;
-        byte* _pressed, _justpressed, _justreleased;
-        byte* _previous_keystate, _current_keystate;    
+        byte _NUMBUTTONS;
+        byte* _buttonPin;
+        byte* _pressed;
+        byte* _justpressed;
+        byte* _justreleased;
+        byte* _previous_keystate;
+        byte* _current_keystate; 
+        byte* _previousstate;
+        byte* _currentstate;
         unsigned long _lasttime;
-        
+           
 };
 
 #endif

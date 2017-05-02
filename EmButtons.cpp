@@ -4,35 +4,40 @@
 
 /*****************************************************************/
 
-EmButtons::EmButtons(uint8_t NUMBUTTONS,uint8_t* buttonPin,unsigned char type){
+EmButtons::EmButtons(byte NUMBUTTONS,byte* buttonPin,unsigned char type){
     _type=type;
   _NUMBUTTONS=NUMBUTTONS;
-  //Serial.begin(9600);
-  Serial.println("SEX");
-  _buttonPin = new uint8_t[_NUMBUTTONS];
-  for (int i=0;i<_NUMBUTTONS;i++){
-    _buttonPin[i]=buttonPin+i;
-  }
-  for (int i=0;i<_NUMBUTTONS;i++){
-    Serial.println(_buttonPin[i]);
-  }
-  buttonInit();
-  _print = false;
+  _buttonPin = new byte[_NUMBUTTONS];
   _pressed= new byte[_NUMBUTTONS];
-   _justpressed=new byte[NUMBUTTONS];
+   _justpressed=new byte[_NUMBUTTONS];
   _justreleased= new byte[_NUMBUTTONS];
   _previous_keystate = new byte[_NUMBUTTONS];
   _current_keystate = new byte[_NUMBUTTONS];
+    _previousstate = new byte[_NUMBUTTONS];
+  _currentstate = new byte[_NUMBUTTONS];
+
+  for (int i=0;i<_NUMBUTTONS;i++){
+    _buttonPin[i]=buttonPin[i];
+    _pressed[i]=1;
+    _justpressed[i]=1;
+    _justreleased[i]=1;
+    _previous_keystate[i]=1;
+    _current_keystate[i]=1;
+    _previousstate[i]=1;
+    _currentstate[i]=1;
+  }
+  buttonInit();
 }
+
 void EmButtons::buttonInit(){
  for (int i=0;i<_NUMBUTTONS;i++){
   pinMode(_buttonPin[i],INPUT);
  }
 }
 void EmButtons::checkSwitches(){
-  static byte _previousstate[NUMBUTTONS];
-  static byte _currentstate[NUMBUTTONS];
-  static long _lasttime;
+//  static byte _previousstate[_NUMBUTTONS];
+//  static byte _currentstate[_NUMBUTTONS];
+//  static long _lasttime;
   byte index;
   if (millis() < _lasttime) {
     // we wrapped around, lets just try again
@@ -76,17 +81,3 @@ byte EmButtons::switchJustPressed() {
 }
 
 //=============================================================//
-
-void EmButtons::setSerialPrint(boolean p){
-  _print=p;
-}
-
-/*****************************************************************/
-
-
-void EmButtons::serialPrint(String s){
-  if (_print==true)
-    Serial.println(s);
-}
-
-/*****************************************************************/

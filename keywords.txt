@@ -12,7 +12,5 @@ EmButtons	KEYWORD1
 # Methods and Functions (KEYWORD2)
 ###########################################
 
-setSerialPrint	KEYWORD2
-test	KEYWORD2
 switchJustPressed KEYWORD2
 checkSwitches	KEYWORD2
