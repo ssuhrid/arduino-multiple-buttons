@@ -1,25 +1,19 @@
-# Arduino Library for 7-Segment Display using 4094 shift register
+# Arduino Library to monitor multiple pushbutton states
 
-This is a library to control 7-segment display using 4094 8-bit shift register.
+This is a library to monitor the states of multiple digital push buttons.
 
 # Features!
-  - Supports upto 255 digits.
-  - Support for both common anode and common cathode displays
-  - Directly print multiple integer values
-  - Print MSB or LSB (depending on user's choice) in case of number exceeding display.
-  - Print numbers using arrays
-  - Add/remove leading zeros
-  - Blink at specific location on display    
-
-
+  - Monitor upto 254 buttons by calling a single function.
+  - Supports both pullup and pulldown switching circuits.
+  
 # Hardware
 
 The following are a must:
   - Any arduino board
-  - Shift register 4094
-  - 7-segment led display.
+  - Push button(s)
+  - Resistances
 
-Any number and size of display can be added. Hardware requirements may change due to larger current requirement of bigger sized displays.
+You are free to add any hardware you like and use the library to manage the digitalInputs.
 
 # Example
 
