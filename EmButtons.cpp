@@ -4,8 +4,10 @@
 
 /*****************************************************************/
 
-EmButtons::EmButtons(uint8_t NUMBUTTONS;uint8_t arr[],char type){
-  _buttonPin=arr;
+EmButtons::EmButtons(uint8_t NUMBUTTONS;uint8_t buttonPin[],char type){
+  for (int i=0;i<NUMBUTTONS;i++){
+    _buttonPin[i]=buttonPin[i];
+  }
   _type=type;
   _NUMBUTTONS=NUMBUTTONS;
   buttonInit();
@@ -15,7 +17,7 @@ void EmButtons::buttonInit(){
   pinMode(_buttonPin[i],INPUT);
  }
 }
-void EmButtons::checkSwitches(){
+/*void EmButtons::checkSwitches(){
   static byte _previousstate[NUMBUTTONS];
   static byte _currentstate[NUMBUTTONS];
   static long _lasttime;
