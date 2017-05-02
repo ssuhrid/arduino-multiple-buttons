@@ -4,8 +4,7 @@
 
 /*****************************************************************/
 
-EmButtons::EmButtons(byte NUMBUTTONS,byte* buttonPin,unsigned char type){
-    _type=type;
+EmButtons::EmButtons(byte NUMBUTTONS,byte* buttonPin){
   _NUMBUTTONS=NUMBUTTONS;
   _buttonPin = new byte[_NUMBUTTONS];
   _pressed= new byte[_NUMBUTTONS];
@@ -67,7 +66,7 @@ void EmButtons::checkSwitches(){
   }
 }
 
-byte EmButtons::switchJustPressed() {
+byte EmButtons::switchPressed() {
   byte thisSwitch = 255;
   checkSwitches();  //check the switches &amp; get the current state
   for (byte i = 0; i < _NUMBUTTONS; i++) {

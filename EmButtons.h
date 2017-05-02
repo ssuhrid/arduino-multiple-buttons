@@ -10,15 +10,14 @@ class EmButtons{
 
     public :
 
-        EmButtons(byte NUMBUTTONS,byte* buttonPin,byte type);
-        byte switchJustPressed();
+        EmButtons(byte NUMBUTTONS,byte* buttonPin);
+        byte switchPressed();
         void checkSwitches();
   
     private:
 
         void buttonInit();
 
-        char _type;
         byte _NUMBUTTONS;
         byte* _buttonPin;
         byte* _pressed;
